@@ -52,12 +52,16 @@ function ProductsIndex() {
       cards,
       { opacity: 0, y: 60, scale: 0.92, filter: "blur(12px)", rotateX: 10 },
       {
-        opacity: 1, y: 0, scale: 1, filter: "blur(0px)", rotateX: 0,
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        filter: "blur(0px)",
+        rotateX: 0,
         duration: 0.95,
         ease: "expo.out",
         stagger: { each: 0.045, from: "start", grid: "auto" },
         overwrite: true,
-      }
+      },
     );
     // Subtle floating bob — each card on its own phase
     const floats: gsap.core.Tween[] = [];
@@ -70,22 +74,26 @@ function ProductsIndex() {
           yoyo: true,
           repeat: -1,
           delay: (i % 5) * 0.2,
-        })
+        }),
       );
     });
-    return () => { floats.forEach((t) => t.kill()); };
+    return () => {
+      floats.forEach((t) => t.kill());
+    };
   }, [activeCat, q, onlyFeatured]);
 
   return (
     <>
       <Reveal as="section" variant="fade-up" className="container-page pt-32 pb-12">
-        <span className="text-[0.7rem] uppercase tracking-[0.42em] text-copper-light/80">Catalogue</span>
+        <span className="text-[0.7rem] uppercase tracking-[0.42em] text-copper-light/80">
+          Catalogue
+        </span>
         <h1 className="mt-4 font-display text-balance text-[clamp(2.5rem,6vw,5rem)] leading-[1.02] text-cream max-w-4xl">
           200+ CNC-ready designs across 15 categories.
         </h1>
         <p className="mt-6 max-w-2xl text-cream/70 text-lg leading-relaxed">
-          Every design ships in RLF, STL and DXF formats — production-ready for your CNC. Tap any card to
-          preview, or send your own reference to commission a custom file.
+          Every design ships in RLF, STL and DXF formats — production-ready for your CNC. Tap any
+          card to preview, or send your own reference to commission a custom file.
         </p>
       </Reveal>
 
@@ -111,7 +119,9 @@ function ProductsIndex() {
         </div>
 
         <div className="mt-6 flex flex-wrap gap-2">
-          <Chip active={activeCat === "all"} onClick={() => setActiveCat("all")}>All</Chip>
+          <Chip active={activeCat === "all"} onClick={() => setActiveCat("all")}>
+            All
+          </Chip>
           {CATEGORIES.map((c) => (
             <Chip key={c.slug} active={activeCat === c.slug} onClick={() => setActiveCat(c.slug)}>
               {c.name}
@@ -124,9 +134,16 @@ function ProductsIndex() {
         <div className="text-xs uppercase tracking-[0.22em] text-cream/55 mb-6">
           {items.length} design{items.length === 1 ? "" : "s"}
         </div>
-        <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <div
+          ref={gridRef}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
+        >
           {items.map(({ category, product }) => (
-            <ProductCard key={`${category.slug}-${product.slug}`} category={category} product={product} />
+            <ProductCard
+              key={`${category.slug}-${product.slug}`}
+              category={category}
+              product={product}
+            />
           ))}
         </div>
 
@@ -139,7 +156,8 @@ function ProductsIndex() {
         <div className="rounded-3xl border border-border/60 bg-card/40 p-10 sm:p-14 text-center">
           <h3 className="font-display text-3xl sm:text-4xl text-cream">Don't see what you need?</h3>
           <p className="mt-3 text-cream/70 max-w-xl mx-auto">
-            Send us a reference image, sketch or CAD file — we'll convert it into a production-ready CNC design.
+            Send us a reference image, sketch or CAD file — we'll convert it into a production-ready
+            CNC design.
           </p>
           <Link
             to="/products/$category/$product"
@@ -154,7 +172,15 @@ function ProductsIndex() {
   );
 }
 
-function Chip({ children, active, onClick }: { children: React.ReactNode; active?: boolean; onClick: () => void }) {
+function Chip({
+  children,
+  active,
+  onClick,
+}: {
+  children: React.ReactNode;
+  active?: boolean;
+  onClick: () => void;
+}) {
   return (
     <button
       type="button"

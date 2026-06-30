@@ -7,11 +7,15 @@ import { useEffect, useRef } from "react";
  */
 
 type Particle = {
-  x: number; y: number;
-  vx: number; vy: number;
-  life: number; max: number;
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  life: number;
+  max: number;
   size: number;
-  rot: number; vr: number;
+  rot: number;
+  vr: number;
   color: string;
   shape: 0 | 1 | 2; // 0 chip, 1 fleck, 2 mote
   drag: number;
@@ -43,7 +47,8 @@ export function ParticleTrail() {
     const canvas = ref.current!;
     const ctx = canvas.getContext("2d", { alpha: true })!;
     const fine = window.matchMedia("(pointer: fine)").matches;
-    const cores = (navigator as Navigator & { hardwareConcurrency?: number }).hardwareConcurrency ?? 4;
+    const cores =
+      (navigator as Navigator & { hardwareConcurrency?: number }).hardwareConcurrency ?? 4;
     // Touch gets a bigger budget — sawdust trails should feel generous
     const BUDGET = fine ? (cores >= 8 ? 260 : 180) : 220;
 
@@ -59,7 +64,9 @@ export function ParticleTrail() {
     window.addEventListener("resize", resize);
 
     const particles: Particle[] = [];
-    let lastX = 0, lastY = 0, lastT = 0;
+    let lastX = 0,
+      lastY = 0,
+      lastT = 0;
 
     function spawn(x: number, y: number, count: number, intensity = 1, dirX = 0, dirY = 0) {
       for (let i = 0; i < count; i++) {
@@ -88,7 +95,8 @@ export function ParticleTrail() {
 
     const onPointerMove = (e: PointerEvent) => {
       const now = performance.now();
-      const dx = e.clientX - lastX, dy = e.clientY - lastY;
+      const dx = e.clientX - lastX,
+        dy = e.clientY - lastY;
       const dist = Math.hypot(dx, dy);
       if (dist < 2) return;
       const dt = Math.max(8, now - lastT);
@@ -97,7 +105,9 @@ export function ParticleTrail() {
       const baseN = isTouch ? 4 : 2;
       const n = Math.min(isTouch ? 10 : 7, baseN + Math.floor(velocity * 5));
       spawn(e.clientX, e.clientY, n, Math.min(1.6, 0.7 + velocity * 0.35), dx, dy);
-      lastX = e.clientX; lastY = e.clientY; lastT = now;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      lastT = now;
     };
 
     const onPointerDown = (e: PointerEvent) => {
@@ -116,12 +126,16 @@ export function ParticleTrail() {
     let raf = 0;
     let prev = performance.now();
     const frame = (t: number) => {
-      const dt = Math.min(48, t - prev); prev = t;
+      const dt = Math.min(48, t - prev);
+      prev = t;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       for (let i = particles.length - 1; i >= 0; i--) {
         const p = particles[i];
         p.life += dt;
-        if (p.life >= p.max) { particles.splice(i, 1); continue; }
+        if (p.life >= p.max) {
+          particles.splice(i, 1);
+          continue;
+        }
         const k = p.life / p.max;
         // Settling physics
         p.vy += p.gravity;

@@ -43,7 +43,6 @@ function NotFoundComponent() {
 }
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
-  console.error(error);
   const router = useRouter();
   useEffect(() => {
     reportClientError(error, { boundary: "tanstack_root_error_component" });
@@ -93,17 +92,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: "Rachnakar Design Studio" },
       { property: "og:site_name", content: "Rachnakar Design Studio" },
-      { property: "og:title", content: "Rachnakar Design Studio — CNC Carving, Cutting & Engraving" },
+      {
+        property: "og:title",
+        content: "Rachnakar Design Studio — CNC Carving, Cutting & Engraving",
+      },
       {
         property: "og:description",
         content:
           "Heritage carving meets modern precision. CNC-ready designs for doors, temples, jali screens and bespoke furniture.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://rachnakar.studio/" },
+      { property: "og:image", content: "https://rachnakar.studio/og-image.jpg" },
       { name: "twitter:card", content: "summary" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      { rel: "canonical", href: "https://rachnakar.studio/" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {

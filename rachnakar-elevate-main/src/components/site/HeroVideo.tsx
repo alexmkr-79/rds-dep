@@ -30,10 +30,17 @@ export function HeroVideo() {
         />
       )}
       {failed && (
-        <img src={heroFallback} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <img
+          src={heroFallback}
+          alt="Rachnakar Design Studio CNC carved artwork"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
       )}
       <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.10_0.014_50)/0.55] via-[oklch(0.10_0.014_50)/0.35] to-[oklch(0.10_0.014_50)/0.85]" />
-      <div className="absolute inset-0" style={{ background: "var(--gradient-hero)", opacity: 0.4 }} />
+      <div
+        className="absolute inset-0"
+        style={{ background: "var(--gradient-hero)", opacity: 0.4 }}
+      />
     </div>
   );
 }

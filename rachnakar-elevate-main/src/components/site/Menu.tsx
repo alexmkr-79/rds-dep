@@ -76,7 +76,11 @@ export function FullscreenMenu({ open, onClose }: Props) {
         },
       })
       .to(items, { y: 20, opacity: 0, duration: 0.35, stagger: 0.03 })
-      .to(panel.current, { clipPath: "inset(100% 0% 0% 0%)", duration: 0.7, ease: "expo.in" }, "-=0.2")
+      .to(
+        panel.current,
+        { clipPath: "inset(100% 0% 0% 0%)", duration: 0.7, ease: "expo.in" },
+        "-=0.2",
+      )
       .to(root.current, { autoAlpha: 0, duration: 0.2 }, "-=0.1");
   };
 
@@ -109,7 +113,10 @@ export function FullscreenMenu({ open, onClose }: Props) {
           </button>
         </div>
 
-        <div ref={itemsRef} className="container-page grid lg:grid-cols-[1.4fr_1fr] gap-12 lg:gap-20 pt-8 pb-16 h-[calc(100vh-5rem)] overflow-y-auto">
+        <div
+          ref={itemsRef}
+          className="container-page grid lg:grid-cols-[1.4fr_1fr] gap-12 lg:gap-20 pt-8 pb-16 h-[calc(100vh-5rem)] overflow-y-auto"
+        >
           <nav className="flex flex-col gap-2 sm:gap-3">
             {PRIMARY.map((n) => (
               <div data-menu-item key={n.label} className="overflow-hidden">
@@ -127,7 +134,7 @@ export function FullscreenMenu({ open, onClose }: Props) {
               <a
                 href={whatsappUrl("Hello Rachnakar Design Studio, I'd like to discuss a project.")}
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.28em] text-copper-light hover:text-cream transition-colors"
               >
                 <span className="hairline w-10" /> WhatsApp the studio
@@ -136,7 +143,10 @@ export function FullscreenMenu({ open, onClose }: Props) {
           </nav>
 
           <aside className="border-l border-border/40 lg:pl-12">
-            <div data-menu-item className="text-[0.65rem] uppercase tracking-[0.3em] text-copper-light/70 mb-6">
+            <div
+              data-menu-item
+              className="text-[0.65rem] uppercase tracking-[0.3em] text-copper-light/70 mb-6"
+            >
               Catalogue
             </div>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-sm">

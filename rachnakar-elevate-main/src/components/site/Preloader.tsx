@@ -52,7 +52,10 @@ export function Preloader() {
       setActive(false);
     };
 
-    if (reduce) { finish(); return; }
+    if (reduce) {
+      finish();
+      return;
+    }
 
     const ctx = gsap.context(() => {
       const chars = word.current?.querySelectorAll<HTMLElement>("[data-char]") ?? [];
@@ -64,26 +67,57 @@ export function Preloader() {
         .set(tagline.current, { opacity: 0, y: 14, letterSpacing: "0.6em" })
         // Ring carves first — like a CNC bit tracing
         .to(ring.current, {
-          opacity: 1, scale: 1, rotate: 0,
-          duration: 1.0, ease: "expo.out",
+          opacity: 1,
+          scale: 1,
+          rotate: 0,
+          duration: 1.0,
+          ease: "expo.out",
         })
         // Logo lifts in
-        .to(logo.current, {
-          opacity: 1, scale: 1, rotate: 0, filter: "blur(0px)",
-          duration: 1.0, ease: "expo.out",
-        }, "-=0.7")
-        .to(logo.current, {
-          boxShadow: "0 0 90px oklch(0.80 0.075 70 / 0.55)",
-          duration: 0.45,
-        }, "<+0.2")
+        .to(
+          logo.current,
+          {
+            opacity: 1,
+            scale: 1,
+            rotate: 0,
+            filter: "blur(0px)",
+            duration: 1.0,
+            ease: "expo.out",
+          },
+          "-=0.7",
+        )
+        .to(
+          logo.current,
+          {
+            boxShadow: "0 0 90px oklch(0.80 0.075 70 / 0.55)",
+            duration: 0.45,
+          },
+          "<+0.2",
+        )
         // Devanagari word reveals char-by-char
-        .to(chars, {
-          yPercent: 0, opacity: 1, duration: 0.85, ease: "expo.out", stagger: 0.06,
-        }, "-=0.55")
+        .to(
+          chars,
+          {
+            yPercent: 0,
+            opacity: 1,
+            duration: 0.85,
+            ease: "expo.out",
+            stagger: 0.06,
+          },
+          "-=0.55",
+        )
         // Tagline tracking-in
-        .to(tagline.current, {
-          opacity: 1, y: 0, letterSpacing: "0.42em", duration: 0.9, ease: "expo.out",
-        }, "-=0.5")
+        .to(
+          tagline.current,
+          {
+            opacity: 1,
+            y: 0,
+            letterSpacing: "0.42em",
+            duration: 0.9,
+            ease: "expo.out",
+          },
+          "-=0.5",
+        )
         .to({}, { duration: 0.5 })
         .add(() => {
           // FLIP morph into header logo
@@ -95,36 +129,59 @@ export function Preloader() {
           const to = target.getBoundingClientRect();
           const sx = to.width / from.width;
           const sy = to.height / from.height;
-          const dx = (to.left + to.width / 2) - (from.left + from.width / 2);
-          const dy = (to.top + to.height / 2) - (from.top + from.height / 2);
+          const dx = to.left + to.width / 2 - (from.left + from.width / 2);
+          const dy = to.top + to.height / 2 - (from.top + from.height / 2);
 
           gsap.to(src, {
-            x: dx, y: dy, scaleX: sx, scaleY: sy,
+            x: dx,
+            y: dy,
+            scaleX: sx,
+            scaleY: sy,
             boxShadow: "0 0 0 oklch(0.80 0.075 70 / 0)",
-            duration: 1.0, ease: "expo.inOut",
+            duration: 1.0,
+            ease: "expo.inOut",
           });
           // Word + ring + tagline fade out as logo morphs
           gsap.to([word.current, ring.current, tagline.current], {
-            opacity: 0, y: -14, filter: "blur(8px)", duration: 0.55, ease: "power2.in",
+            opacity: 0,
+            y: -14,
+            filter: "blur(8px)",
+            duration: 0.55,
+            ease: "power2.in",
           });
           gsap.to(veil.current, {
-            autoAlpha: 0, duration: 0.7, ease: "power2.out", delay: 0.45,
+            autoAlpha: 0,
+            duration: 0.7,
+            ease: "power2.out",
+            delay: 0.45,
           });
           // Reveal the real header logo as the morph completes
           gsap.to(target, {
-            opacity: 1, y: 0, duration: 0.5, ease: "power2.out", delay: 0.85,
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            ease: "power2.out",
+            delay: 0.85,
             onStart: () => document.body.classList.remove("rk-logo-cloak"),
           });
         })
         .to({}, { duration: 1.2 });
     }, root);
-    return () => { ctx.revert(); document.body.style.overflow = ""; document.body.classList.remove("rk-logo-cloak"); };
+    return () => {
+      ctx.revert();
+      document.body.style.overflow = "";
+      document.body.classList.remove("rk-logo-cloak");
+    };
   }, [active]);
 
   if (!active) return null;
 
   return (
-    <div ref={root} className="fixed inset-0 z-[200] pointer-events-none overflow-hidden" aria-hidden>
+    <div
+      ref={root}
+      className="fixed inset-0 z-[200] pointer-events-none overflow-hidden"
+      aria-hidden
+    >
       <div
         ref={veil}
         className="absolute inset-0 bg-[oklch(0.08_0.012_50)]"
@@ -137,7 +194,8 @@ export function Preloader() {
         style={{
           background:
             "conic-gradient(from 0deg, transparent 0deg, oklch(0.80 0.075 70 / 0.4) 90deg, oklch(0.62 0.085 55 / 0.6) 180deg, oklch(0.80 0.075 70 / 0.4) 270deg, transparent 360deg)",
-          WebkitMask: "radial-gradient(circle, transparent 58%, #000 60%, #000 62%, transparent 64%)",
+          WebkitMask:
+            "radial-gradient(circle, transparent 58%, #000 60%, #000 62%, transparent 64%)",
           mask: "radial-gradient(circle, transparent 58%, #000 60%, #000 62%, transparent 64%)",
           filter: "blur(0.5px)",
         }}
@@ -145,14 +203,17 @@ export function Preloader() {
       <img
         ref={logo}
         src={logoAsset.url}
-        alt=""
+        alt="Rachnakar Design Studio logo"
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-40 sm:w-52 select-none rounded-2xl"
         draggable={false}
         style={{ transformOrigin: "center center" }}
       />
       {/* Devanagari title with per-char reveal */}
       <div className="absolute left-1/2 top-[calc(50%+150px)] sm:top-[calc(50%+190px)] -translate-x-1/2 text-center">
-        <div ref={word} className="font-devnag text-copper-light text-5xl sm:text-6xl leading-none flex overflow-hidden">
+        <div
+          ref={word}
+          className="font-devnag text-copper-light text-5xl sm:text-6xl leading-none flex overflow-hidden"
+        >
           {splitGraphemes("रचनाकार").map((c, i) => (
             <span key={i} data-char className="inline-block" style={{ willChange: "transform" }}>
               {c}

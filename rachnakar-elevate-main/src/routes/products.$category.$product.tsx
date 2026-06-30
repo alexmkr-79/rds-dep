@@ -17,7 +17,12 @@ export const Route = createFileRoute("/products/$category/$product")({
         { property: "og:title", content: title },
         { property: "og:description", content: found.product.description },
       ],
-      links: [{ rel: "canonical", href: `/products/${params.category}/${params.product}` }],
+      links: [
+        {
+          rel: "canonical",
+          href: `https://rachnakar.studio/products/${params.category}/${params.product}`,
+        },
+      ],
     };
   },
   loader: ({ params }) => {
@@ -45,11 +50,19 @@ function ProductPage() {
     <>
       <section className="container-page pt-32 pb-16">
         <nav className="text-xs uppercase tracking-[0.22em] text-cream/55 mb-8">
-          <Link to="/" className="hover:text-copper-light">Home</Link>
+          <Link to="/" className="hover:text-copper-light">
+            Home
+          </Link>
           <span className="mx-2">/</span>
-          <Link to="/products" className="hover:text-copper-light">Catalogue</Link>
+          <Link to="/products" className="hover:text-copper-light">
+            Catalogue
+          </Link>
           <span className="mx-2">/</span>
-          <Link to="/products/$category" params={{ category: category.slug }} className="hover:text-copper-light">
+          <Link
+            to="/products/$category"
+            params={{ category: category.slug }}
+            className="hover:text-copper-light"
+          >
             {category.name}
           </Link>
           <span className="mx-2">/</span>
@@ -118,7 +131,7 @@ function ProductPage() {
               <a
                 href={buy}
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-copper text-walnut-deep px-7 py-3.5 font-medium hover:bg-copper-light transition-colors"
               >
                 {product.isCustom ? "Send Your Design" : "Buy Now on WhatsApp"}
@@ -160,9 +173,7 @@ function ProductPage() {
               params={{ category: category.slug, product: p.slug }}
               className="group rounded-2xl border border-border/60 bg-card/40 overflow-hidden hover:border-copper/60 transition-colors"
             >
-              <div
-                className="relative aspect-[4/3] overflow-hidden bg-walnut"
-              >
+              <div className="relative aspect-[4/3] overflow-hidden bg-walnut">
                 {img && !p.isCustom ? (
                   <img
                     src={img}
@@ -175,7 +186,10 @@ function ProductPage() {
                 ) : (
                   <div
                     className="h-full w-full grid place-items-center text-copper-light/30 font-display text-5xl"
-                    style={{ background: "linear-gradient(135deg, oklch(0.28 0.035 55), oklch(0.18 0.022 50))" }}
+                    style={{
+                      background:
+                        "linear-gradient(135deg, oklch(0.28 0.035 55), oklch(0.18 0.022 50))",
+                    }}
                   >
                     {p.isCustom ? "✦" : p.name.slice(0, 1)}
                   </div>

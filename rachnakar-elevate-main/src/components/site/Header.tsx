@@ -21,17 +21,25 @@ export function Header({ onOpenMenu }: { onOpenMenu: () => void }) {
       }`}
     >
       <div className="container-page flex h-16 sm:h-20 items-center justify-between gap-4">
-        <Link to="/" className="flex items-center gap-3 group min-w-0" aria-label="Rachnakar Design Studio — Home">
+        <Link
+          to="/"
+          className="flex items-center gap-3 group min-w-0"
+          aria-label="Rachnakar Design Studio — Home"
+        >
           <img
             data-header-logo
             src={logoAsset.url}
-            alt=""
+            alt="Rachnakar Design Studio logo"
             className="h-10 sm:h-12 w-auto shrink-0 transition-transform duration-500 group-hover:scale-105"
             draggable={false}
           />
           <span className="hidden sm:flex flex-col leading-tight truncate">
-            <span className="font-display text-base sm:text-lg tracking-wide text-cream truncate">Rachnakar</span>
-            <span className="text-[0.6rem] uppercase tracking-[0.32em] text-copper-light/80">Design Studio</span>
+            <span className="font-display text-base sm:text-lg tracking-wide text-cream truncate">
+              Rachnakar
+            </span>
+            <span className="text-[0.6rem] uppercase tracking-[0.32em] text-copper-light/80">
+              Design Studio
+            </span>
           </span>
         </Link>
 

@@ -42,10 +42,15 @@ function CategoryPage() {
       cards,
       { opacity: 0, y: 70, scale: 0.9, filter: "blur(14px)", rotateX: 12 },
       {
-        opacity: 1, y: 0, scale: 1, filter: "blur(0px)", rotateX: 0,
-        duration: 1.0, ease: "expo.out",
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        filter: "blur(0px)",
+        rotateX: 0,
+        duration: 1.0,
+        ease: "expo.out",
         stagger: { each: 0.05, from: "start" },
-      }
+      },
     );
   }, [category.slug]);
 
@@ -53,14 +58,20 @@ function CategoryPage() {
     <>
       <section className="container-page pt-32 pb-16">
         <nav className="text-xs uppercase tracking-[0.22em] text-cream/55 mb-8">
-          <Link to="/" className="hover:text-copper-light">Home</Link>
+          <Link to="/" className="hover:text-copper-light">
+            Home
+          </Link>
           <span className="mx-2">/</span>
-          <Link to="/products" className="hover:text-copper-light">Catalogue</Link>
+          <Link to="/products" className="hover:text-copper-light">
+            Catalogue
+          </Link>
           <span className="mx-2">/</span>
           <span className="text-cream/80">{category.name}</span>
         </nav>
 
-        <span className="text-[0.7rem] uppercase tracking-[0.42em] text-copper-light/80">Collection</span>
+        <span className="text-[0.7rem] uppercase tracking-[0.42em] text-copper-light/80">
+          Collection
+        </span>
         <h1 className="mt-4 font-display text-balance text-[clamp(2.5rem,6vw,5rem)] leading-[1.02] text-cream max-w-4xl">
           {category.name}
         </h1>
@@ -68,7 +79,10 @@ function CategoryPage() {
       </section>
 
       <section className="container-page pb-32">
-        <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <div
+          ref={gridRef}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
+        >
           {category.products.map((product: Product) => (
             <ProductCard key={product.slug} category={category} product={product} />
           ))}

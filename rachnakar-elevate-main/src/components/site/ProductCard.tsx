@@ -46,8 +46,12 @@ export function ProductCard({ category, product }: { category: Category; product
         scrollTrigger: { trigger: root, start: "top 88%", once: true },
         defaults: { ease: "expo.out" },
       });
-      tl.fromTo(cover, { yPercent: 0 }, { yPercent: -101, duration: 1.2 })
-        .fromTo(image, { scale: 1.35, filter: "blur(10px)" }, { scale: 1, filter: "blur(0px)", duration: 1.4 }, "<");
+      tl.fromTo(cover, { yPercent: 0 }, { yPercent: -101, duration: 1.2 }).fromTo(
+        image,
+        { scale: 1.35, filter: "blur(10px)" },
+        { scale: 1, filter: "blur(0px)", duration: 1.4 },
+        "<",
+      );
     }, root);
     return () => ctx.revert();
   }, []);
@@ -66,7 +70,9 @@ export function ProductCard({ category, product }: { category: Category; product
     el.style.setProperty("--my", `${py * 100}%`);
   };
   const onLeave = () => {
-    qxRef.current?.(0); qyRef.current?.(0); qzRef.current?.(0);
+    qxRef.current?.(0);
+    qyRef.current?.(0);
+    qzRef.current?.(0);
   };
 
   return (
@@ -114,12 +120,21 @@ export function ProductCard({ category, product }: { category: Category; product
           aria-hidden
           data-pc-cover
           className="pointer-events-none absolute inset-0"
-          style={{ background: "linear-gradient(180deg, oklch(0.62 0.085 55) 0%, oklch(0.15 0.018 50) 100%)" }}
+          style={{
+            background:
+              "linear-gradient(180deg, oklch(0.62 0.085 55) 0%, oklch(0.15 0.018 50) 100%)",
+          }}
         />
         {/* dark gradient for label legibility */}
-        <span aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-t from-walnut-deep/40 via-transparent to-transparent" />
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-walnut-deep/40 via-transparent to-transparent"
+        />
         {/* shine sweep */}
-        <span aria-hidden className="pointer-events-none absolute -inset-x-1/2 -top-1/2 h-[200%] w-[60%] rotate-12 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 group-hover:translate-x-[260%] transition-all duration-[1100ms] ease-out" />
+        <span
+          aria-hidden
+          className="pointer-events-none absolute -inset-x-1/2 -top-1/2 h-[200%] w-[60%] rotate-12 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 group-hover:translate-x-[260%] transition-all duration-[1100ms] ease-out"
+        />
       </Link>
 
       <div className="rk-tilt-inner flex flex-1 flex-col p-5">
@@ -141,7 +156,10 @@ export function ProductCard({ category, product }: { category: Category; product
 
         <div className="mt-3 flex flex-wrap gap-1.5">
           {product.formats.map((f) => (
-            <span key={f} className="text-[0.65rem] uppercase tracking-wider text-cream/60 px-1.5 py-0.5 border border-border/60 rounded">
+            <span
+              key={f}
+              className="text-[0.65rem] uppercase tracking-wider text-cream/60 px-1.5 py-0.5 border border-border/60 rounded"
+            >
               {f}
             </span>
           ))}
@@ -158,7 +176,7 @@ export function ProductCard({ category, product }: { category: Category; product
           <a
             href={buy}
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             className="flex-1 text-center text-sm py-2.5 rounded-full bg-copper text-walnut-deep font-medium hover:bg-copper-light transition-colors"
           >
             {product.isCustom ? "Send Your Design" : "Buy Now"}

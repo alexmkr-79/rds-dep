@@ -26,9 +26,13 @@ export function Magnetic({
       const r = el.getBoundingClientRect();
       const x = e.clientX - (r.left + r.width / 2);
       const y = e.clientY - (r.top + r.height / 2);
-      xTo(x * strength); yTo(y * strength);
+      xTo(x * strength);
+      yTo(y * strength);
     };
-    const onLeave = () => { xTo(0); yTo(0); };
+    const onLeave = () => {
+      xTo(0);
+      yTo(0);
+    };
 
     el.addEventListener("pointermove", onMove);
     el.addEventListener("pointerleave", onLeave);

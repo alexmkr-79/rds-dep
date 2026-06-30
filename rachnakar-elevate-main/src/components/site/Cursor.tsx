@@ -17,8 +17,10 @@ export function Cursor() {
     const yRing = gsap.quickTo(ring.current!, "y", { duration: 0.5, ease: "power3.out" });
 
     const onMove = (e: PointerEvent) => {
-      xDot(e.clientX); yDot(e.clientY);
-      xRing(e.clientX); yRing(e.clientY);
+      xDot(e.clientX);
+      yDot(e.clientY);
+      xRing(e.clientX);
+      yRing(e.clientY);
     };
     const onOver = (e: Event) => {
       const t = e.target as HTMLElement;

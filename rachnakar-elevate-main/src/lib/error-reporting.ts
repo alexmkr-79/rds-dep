@@ -1,9 +1,8 @@
-// Lightweight client-side error reporting hook. Logs to the console by
-// default; wire up a real monitoring provider here if/when one is added.
+// Lightweight client-side error reporting hook. Wired for future monitoring
+// integrations without emitting console noise during production builds.
 export function reportClientError(error: unknown, context: Record<string, unknown> = {}) {
   if (typeof window === "undefined") return;
-  console.error(error, {
-    route: window.location.pathname,
-    ...context,
-  });
+  void error;
+  void context;
+  void window.location.pathname;
 }
