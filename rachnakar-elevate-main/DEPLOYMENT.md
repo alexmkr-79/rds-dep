@@ -1,22 +1,15 @@
 # Deployment Guide — Cloudflare Pages
 
-This project is a TanStack Start (React 19 + Vite) application. Lovable-specific
-tooling has been removed; it now builds with stock Vite/TanStack/Nitro plugins.
+This project is a Vite React SPA with TanStack Router and client-side routing.
+Lovable-specific tooling has been removed, and the app now builds as a static
+site for Cloudflare Pages.
 
 ## Build settings (Cloudflare Pages dashboard)
 
 - Build command: `npm run build`
-- Build output directory: `dist` (Nitro's `cloudflare_pages` preset emits a
-  Pages-compatible `_worker.js` + static assets here). If your installed
-  Nitro version emits to a different folder, check what's created after
-  running `npm run build` locally and point the output directory there.
+- Build output directory: `dist`
 - Node version: 18+ (set `NODE_VERSION` env var if needed)
 - Root directory: this folder, if deploying from a monorepo
-
-Note: TanStack Start's Vite plugin (`@tanstack/react-start/plugin/vite`)
-already bundles the Nitro Vite plugin internally — `vite.config.ts` only
-needs to pass the `nitro: { preset: "cloudflare_pages" }` option, not
-register `nitro/vite`'s plugin a second time.
 
 ## Decap CMS
 
