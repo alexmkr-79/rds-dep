@@ -29,6 +29,7 @@ export function Footer() {
       >
         <RevealItem variant="fade-up">
           <Link to="/" className="flex items-center gap-3">
+
             <img src={logoAsset.url} alt="Rachnakar Design Studio logo" className="h-14 w-auto" />
             <span className="flex flex-col leading-tight">
               <span className="font-display text-xl text-cream">Rachnakar Design Studio</span>
