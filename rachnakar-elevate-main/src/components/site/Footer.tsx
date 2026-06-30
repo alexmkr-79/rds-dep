@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import logoAsset from "@/assets/rachnakar-logo.png.asset.json";
 import { Reveal, RevealItem } from "@/components/motion/Reveal";
+
+const logoAssetSrc =
+  "/__l5e/assets-v1/05bc4297-efa0-4cf7-b6e1-fbf40df4d910/rachnakar-logo.png";
 
 function Icon({ d, size = 16 }: { d: string; size?: number }) {
   return (
@@ -29,7 +31,7 @@ export function Footer() {
       >
         <RevealItem variant="fade-up">
           <Link to="/" className="flex items-center gap-3">
-            <img src={logoAsset.url} alt="Rachnakar Design Studio logo" className="h-14 w-auto" />
+            <img src={logoAssetSrc} alt="Rachnakar Design Studio logo" className="h-14 w-auto" />
             <span className="flex flex-col leading-tight">
               <span className="font-display text-xl text-cream">Rachnakar Design Studio</span>
               <span className="text-[0.65rem] tracking-[0.32em] uppercase text-copper-light/80">

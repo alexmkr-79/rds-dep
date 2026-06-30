@@ -1,6 +1,8 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import logoAsset from "@/assets/rachnakar-logo.png.asset.json";
+
+const logoAssetSrc =
+  "/__l5e/assets-v1/05bc4297-efa0-4cf7-b6e1-fbf40df4d910/rachnakar-logo.png";
 
 // Devanagari clusters (e.g. क + ा) must stay together. JS string split("")
 // breaks code units, separating vowel signs from their consonant. Use
@@ -202,7 +204,7 @@ export function Preloader() {
       />
       <img
         ref={logo}
-        src={logoAsset.url}
+        src={logoAssetSrc}
         alt="Rachnakar Design Studio logo"
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-40 sm:w-52 select-none rounded-2xl"
         draggable={false}

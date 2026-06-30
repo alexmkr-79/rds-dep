@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from "react";
-import heroVideo from "@/assets/cnc-hero.mp4.asset.json";
-import heroFallback from "@/assets/cnc-hero.jpg";
+import { useEffect, useRef } from "react";
+
+const heroVideoSrc =
+  "/__l5e/assets-v1/0666484b-d937-43e0-bc23-7d52294e6fb1/cnc-hero.mp4";
 
 export function HeroVideo() {
   const ref = useRef<HTMLVideoElement>(null);
-  const [failed, setFailed] = useState(false);
 
   useEffect(() => {
     const v = ref.current;
@@ -15,27 +15,16 @@ export function HeroVideo() {
 
   return (
     <div className="absolute inset-0 overflow-hidden">
-      {!failed && (
-        <video
-          ref={ref}
-          src={heroVideo.url}
-          poster={heroFallback}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          onError={() => setFailed(true)}
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-      )}
-      {failed && (
-        <img
-          src={heroFallback}
-          alt="Rachnakar Design Studio CNC carved artwork"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-      )}
+      <video
+        ref={ref}
+        src={heroVideoSrc}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
       <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.10_0.014_50)/0.55] via-[oklch(0.10_0.014_50)/0.35] to-[oklch(0.10_0.014_50)/0.85]" />
       <div
         className="absolute inset-0"

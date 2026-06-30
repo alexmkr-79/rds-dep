@@ -1,7 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import logoAsset from "@/assets/rachnakar-logo.png.asset.json";
 import { MenuButton } from "./Menu";
+
+const logoAssetSrc =
+  "/__l5e/assets-v1/05bc4297-efa0-4cf7-b6e1-fbf40df4d910/rachnakar-logo.png";
 
 export function Header({ onOpenMenu }: { onOpenMenu: () => void }) {
   const [scrolled, setScrolled] = useState(false);
@@ -28,7 +30,7 @@ export function Header({ onOpenMenu }: { onOpenMenu: () => void }) {
         >
           <img
             data-header-logo
-            src={logoAsset.url}
+            src={logoAssetSrc}
             alt="Rachnakar Design Studio logo"
             className="h-10 sm:h-12 w-auto shrink-0 transition-transform duration-500 group-hover:scale-105"
             draggable={false}
