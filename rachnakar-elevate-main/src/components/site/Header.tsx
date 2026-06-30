@@ -1,9 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import logoAssetSrc from "@/assets/RACHNAKAR LOGO-2.png";
 import { MenuButton } from "./Menu";
-
-const logoAssetSrc =
-  "/__l5e/assets-v1/05bc4297-efa0-4cf7-b6e1-fbf40df4d910/rachnakar-logo.png";
 
 export function Header({ onOpenMenu }: { onOpenMenu: () => void }) {
   const [scrolled, setScrolled] = useState(false);

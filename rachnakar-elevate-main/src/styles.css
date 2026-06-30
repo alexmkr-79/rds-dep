@@ -133,15 +133,41 @@
 
   html {
     scroll-behavior: smooth;
+    width: 100%;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   body {
+    width: 100%;
+    min-width: 320px;
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-body);
     font-feature-settings: "ss01", "ss02", "liga", "kern";
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  img,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  #root {
+    width: 100%;
+    min-height: 100vh;
     overflow-x: hidden;
   }
 

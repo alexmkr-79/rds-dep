@@ -1,8 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
-
-const logoAssetSrc =
-  "/__l5e/assets-v1/05bc4297-efa0-4cf7-b6e1-fbf40df4d910/rachnakar-logo.png";
+import logoAssetSrc from "@/assets/RACHNAKAR LOGO-2.png";
 
 // Devanagari clusters (e.g. क + ा) must stay together. JS string split("")
 // breaks code units, separating vowel signs from their consonant. Use

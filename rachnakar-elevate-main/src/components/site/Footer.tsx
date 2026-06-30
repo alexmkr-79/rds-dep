@@ -1,8 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Reveal, RevealItem } from "@/components/motion/Reveal";
-
-const logoAssetSrc =
-  "/__l5e/assets-v1/05bc4297-efa0-4cf7-b6e1-fbf40df4d910/rachnakar-logo.png";
+import logoAssetSrc from "@/assets/RACHNAKAR LOGO-2.png";
 
 function Icon({ d, size = 16 }: { d: string; size?: number }) {
   return (
