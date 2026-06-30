@@ -1,15 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import {
-  Outlet,
-  Link,
-  createRootRouteWithContext,
-  useRouter,
-  HeadContent,
-  Scripts,
-} from "@tanstack/react-router";
-import { useEffect, useState, type ReactNode } from "react";
+import { Outlet, Link, createRootRouteWithContext, useRouter } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 
-import appCss from "../styles.css?url";
 import { reportClientError } from "../lib/error-reporting";
 import { Preloader } from "../components/site/Preloader";
 import { Header } from "../components/site/Header";
@@ -80,62 +72,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Rachnakar Design Studio — CNC Carving, Cutting & Engraving in Pune" },
-      {
-        name: "description",
-        content:
-          "Rachnakar Design Studio crafts precision CNC carved doors, temples, jali panels and custom furniture in Baner, Pune. Browse 200+ CNC-ready designs.",
-      },
-      { name: "author", content: "Rachnakar Design Studio" },
-      { property: "og:site_name", content: "Rachnakar Design Studio" },
-      {
-        property: "og:title",
-        content: "Rachnakar Design Studio — CNC Carving, Cutting & Engraving",
-      },
-      {
-        property: "og:description",
-        content:
-          "Heritage carving meets modern precision. CNC-ready designs for doors, temples, jali screens and bespoke furniture.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://rachnakar.studio/" },
-      { property: "og:image", content: "https://rachnakar.studio/og-image.jpg" },
-      { name: "twitter:card", content: "summary" },
-    ],
-    links: [
-      { rel: "stylesheet", href: appCss },
-      { rel: "canonical", href: "https://rachnakar.studio/" },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap",
-      },
-    ],
-  }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
 });
-
-function RootShell({ children }: { children: ReactNode }) {
-  return (
-    <html lang="en" className="dark">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
@@ -143,17 +83,19 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Preloader />
-      <SmoothScroll />
-      <ParticleTrail />
-      <Cursor />
-      <ScrollProgress />
-      <Header onOpenMenu={() => setMenuOpen(true)} />
-      <FullscreenMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
-      <main className="relative">
-        <Outlet />
-      </main>
-      <Footer />
+      <div className="min-h-screen bg-background text-foreground">
+        <Preloader />
+        <SmoothScroll />
+        <ParticleTrail />
+        <Cursor />
+        <ScrollProgress />
+        <Header onOpenMenu={() => setMenuOpen(true)} />
+        <FullscreenMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
+        <main className="relative">
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
     </QueryClientProvider>
   );
 }
