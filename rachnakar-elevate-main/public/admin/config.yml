@@ -1,0 +1,166 @@
+# Decap CMS config for Rachnakar Design Studio
+# After connecting GitHub, update `repo` to "<owner>/<repo>" and the branch if needed.
+backend:
+  name: github
+  repo: OWNER/REPO
+  branch: main
+  base_url: https://api.netlify.com
+  # For local dev: run `npx decap-server` and use the local backend instead:
+  # name: git-gateway
+  # branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+publish_mode: editorial_workflow
+
+collections:
+  - name: settings
+    label: Site Settings
+    files:
+      - name: site
+        label: Site Settings
+        file: content/settings/site.json
+        format: json
+        fields:
+          - { name: siteName, label: Site Name, widget: string }
+          - { name: tagline, label: Tagline, widget: string }
+          - { name: whatsappNumber, label: WhatsApp Number, widget: string }
+          - { name: email, label: Email, widget: string }
+          - { name: address, label: Business Address, widget: text }
+          - { name: phone, label: Phone, widget: string }
+          - { name: hours, label: Hours, widget: text }
+      - name: seo
+        label: SEO Metadata
+        file: content/settings/seo.json
+        format: json
+        fields:
+          - { name: title, label: Default Title, widget: string }
+          - { name: description, label: Default Description, widget: text }
+          - { name: ogImage, label: OG Image, widget: image, required: false }
+      - name: social
+        label: Social Media Links
+        file: content/settings/social.json
+        format: json
+        fields:
+          - { name: instagram, label: Instagram, widget: string, required: false }
+          - { name: facebook, label: Facebook, widget: string, required: false }
+          - { name: youtube, label: YouTube, widget: string, required: false }
+          - { name: linkedin, label: LinkedIn, widget: string, required: false }
+      - name: navigation
+        label: Navigation
+        file: content/settings/navigation.json
+        format: json
+        fields:
+          - name: links
+            label: Links
+            widget: list
+            fields:
+              - { name: label, label: Label, widget: string }
+              - { name: href, label: Href, widget: string }
+      - name: footer
+        label: Footer
+        file: content/settings/footer.json
+        format: json
+        fields:
+          - { name: copyright, label: Copyright, widget: string }
+          - { name: note, label: Note, widget: string, required: false }
+
+  - name: hero
+    label: Hero Section
+    files:
+      - name: hero
+        label: Hero
+        file: content/hero/hero.json
+        format: json
+        fields:
+          - { name: eyebrow, label: Eyebrow, widget: string }
+          - { name: heading, label: Heading, widget: string }
+          - { name: subheading, label: Subheading, widget: text }
+          - { name: ctaLabel, label: CTA Label, widget: string }
+          - { name: image, label: Background Image, widget: image, required: false }
+
+  - name: services
+    label: Services
+    folder: content/services
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: description, label: Description, widget: text }
+      - { name: icon, label: Icon SVG Path, widget: string, required: false }
+      - { name: order, label: Order, widget: number, default: 1 }
+
+  - name: categories
+    label: Product Categories
+    folder: content/categories
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: name, label: Name, widget: string }
+      - { name: description, label: Description, widget: text, required: false }
+
+  - name: products
+    label: Products
+    folder: content/products
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: name, label: Product Name, widget: string }
+      - { name: category, label: Category, widget: string, required: false }
+      - { name: image, label: Product Image, widget: image }
+      - { name: description, label: Short Description, widget: text }
+      - { name: price, label: Price, widget: string }
+      - { name: specs, label: Specifications, widget: text, required: false }
+      - { name: order, label: Order, widget: number, default: 1 }
+
+  - name: portfolio
+    label: Portfolio
+    folder: content/portfolio
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: tag, label: Tag, widget: string }
+      - { name: image, label: Image, widget: image }
+      - { name: description, label: Description, widget: text, required: false }
+
+  - name: gallery
+    label: Gallery
+    folder: content/gallery
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: caption, label: Caption, widget: string, required: false }
+      - { name: image, label: Image, widget: image }
+
+  - name: testimonials
+    label: Testimonials
+    folder: content/testimonials
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: name, label: Name, widget: string }
+      - { name: role, label: Role / Location, widget: string, required: false }
+      - { name: quote, label: Quote, widget: text }
+      - { name: rating, label: Rating (1–5), widget: number, default: 5 }
+
+  - name: faq
+    label: FAQ
+    folder: content/faq
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: question, label: Question, widget: string }
+      - { name: answer, label: Answer, widget: text }
+
+  - name: blog
+    label: Blog
+    folder: content/blog
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: date, label: Date, widget: datetime }
+      - { name: cover, label: Cover Image, widget: image, required: false }
+      - { name: excerpt, label: Excerpt, widget: text }
+      - { name: body, label: Body, widget: markdown }
