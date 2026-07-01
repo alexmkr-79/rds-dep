@@ -58,6 +58,28 @@ const works = [
   { src: workSign, title: "Engraved Name Plate", tag: "Signage" },
 ];
 
+const designFileFeatures = [
+  "2D Jali Designs",
+  "3D Relief Carving Files",
+  "Temple & Mandir Designs",
+  "Door & Panel Designs",
+  "Furniture Carving Files",
+  "Custom CNC Designs",
+];
+
+const designFilesMessage = `Hello Rachnakar Design Studio,
+
+I am interested in your CNC Design Files.
+
+Requirements:
+• Design Type:
+• Machine Size:
+• Material:
+• Quantity:
+• Reference Image (if any):
+
+Please share pricing and delivery time.`;
+
 function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
 
@@ -212,6 +234,60 @@ function Home() {
               </div>
             </RevealItem>
           ))}
+        </Reveal>
+      </section>
+
+      {/* CNC DESIGN FILES */}
+      <section
+        id="design-files"
+        className="container-page py-24 sm:py-32 border-t border-border/40"
+      >
+        <Reveal variant="fade-up">
+          <div className="rounded-[2rem] border border-border/60 bg-[linear-gradient(135deg,oklch(0.17_0.018_50/0.9),oklch(0.13_0.014_50/0.95))] p-8 sm:p-10 lg:p-12 shadow-[0_24px_70px_-24px_oklch(0.62_0.085_55/0.35)]">
+            <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+              <div>
+                <span className="text-[0.7rem] uppercase tracking-[0.42em] text-copper-light/80">
+                  Design Files
+                </span>
+                <h2 className="mt-4 font-display text-balance text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.05] text-cream">
+                  CNC Design Files for Designers
+                </h2>
+                <p className="mt-6 max-w-2xl text-cream/75 text-base sm:text-lg leading-relaxed">
+                  Professional CNC-ready design files for workshops, manufacturers, and CNC
+                  professionals.
+                </p>
+                <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+                  {designFileFeatures.map((feature) => (
+                    <li
+                      key={feature}
+                      className="rounded-2xl border border-border/50 bg-card/40 px-4 py-3 text-sm text-cream/80"
+                    >
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="rounded-[1.5rem] border border-border/50 bg-background/70 p-6 sm:p-8">
+                <p className="text-sm leading-relaxed text-cream/75">
+                  Already own a CNC router? We provide professionally designed CNC-ready files for
+                  workshops, furniture manufacturers, interior designers, and CNC professionals. We
+                  also create completely custom designs from your reference image or concept.
+                </p>
+                <div className="mt-8">
+                  <Magnetic>
+                    <a
+                      href={whatsappUrl(designFilesMessage)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full bg-copper text-walnut-deep px-7 py-3.5 font-medium hover:bg-copper-light transition-colors shadow-[0_18px_50px_-18px_oklch(0.80_0.075_70/0.6)]"
+                    >
+                      Request Design Files
+                    </a>
+                  </Magnetic>
+                </div>
+              </div>
+            </div>
+          </div>
         </Reveal>
       </section>
 

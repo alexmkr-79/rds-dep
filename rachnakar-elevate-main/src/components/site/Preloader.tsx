@@ -59,7 +59,11 @@ export function Preloader() {
 
     const ctx = gsap.context(() => {
       const chars = word.current?.querySelectorAll<HTMLElement>("[data-char]") ?? [];
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" }, onComplete: finish });
+      const tl = gsap.timeline({
+        defaults: { ease: "power3.out" },
+        delay: 0.2,
+        onComplete: finish,
+      });
 
       tl.set(logo.current, { scale: 0.15, opacity: 0, rotate: -14, filter: "blur(20px)" })
         .set(ring.current, { scale: 0.3, opacity: 0, rotate: -45 })
